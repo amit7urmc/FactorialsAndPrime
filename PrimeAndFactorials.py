@@ -5,7 +5,7 @@ class primeAndFactorials:
         self.largest_known_prime = 2
         self.largest_known_slots = [['..'],['.']]
 
-    def enumerate_prime(self, currentLength, verbose=True):
+    def enumerate_prime(self, verbose=True):
         not_a_prime = False
         for each_slot_index, each_slot in enumerate(self.largest_known_slots[0]):
             if len(self.largest_known_slots[1][each_slot_index]) == len(each_slot):
@@ -29,11 +29,11 @@ class primeAndFactorials:
         currentLength = len(str(self.largest_known_prime))
         if byLength:
             while currentLength <= primeNumberLength:
-                currentLength = self.enumerate_prime(currentLength, verbose=verbose)
+                currentLength = self.enumerate_prime(verbose=verbose)
         else:
             currentCount = 1
             while currentCount <= cutOffLargestPrimesRequired:
-                _ = self.enumerate_prime(currentLength, verbose=verbose)   
+                _ = self.enumerate_prime(verbose=verbose)   
                 currentCount += 1 
 
     def get_all_primes(self):
@@ -49,12 +49,12 @@ class primeAndFactorials:
 if __name__ == "__main__":
 
     primeAndFactorials_obj_byLength = primeAndFactorials()
-    primeAndFactorials_obj_byLength.find_next_prime(primeNumberLength=2)
+    primeAndFactorials_obj_byLength.find_next_prime(primeNumberLength=3)
     print(primeAndFactorials_obj_byLength)
     print(primeAndFactorials_obj_byLength.get_all_primes())
 
     primeAndFactorials_obj_byNumberTimes = primeAndFactorials()
-    primeAndFactorials_obj_byNumberTimes.find_next_prime(cutOffLargestPrimesRequired=100, byLength=False)
+    primeAndFactorials_obj_byNumberTimes.find_next_prime(cutOffLargestPrimesRequired=1000, byLength=False)
     print(primeAndFactorials_obj_byNumberTimes)
     print(primeAndFactorials_obj_byNumberTimes.get_all_primes())
 

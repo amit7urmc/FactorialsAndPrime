@@ -1,12 +1,24 @@
 ---
-title: Another way to generate prime numbers.
+title: Two new but naive ways to generate prime numbers.
 author: Amit Kumar
-date: 06th May, 2024 (04:37AM) +05:30 GMT
+date: 11th May, 2024 (09:12AM) +05:30 GMT
 ---
-Finding prime number working in a crude sense. Checked upto 101.
+Wrote two classes to generate prime numbers:
 
-- Finding prime number working in a crude sense. 
-- Two ways this program can be used.
-- (a) By letting know the cut-off length of prime (i.e. cut-off of number of digits in the prime)
-- (b) By letting know the cut-off of number of primes generated (i.e how many primes are required to be generated)
-- Finally one can opt to print out all the primes or just the highest prime.
+- PrimeAndFactorials
+- PrimeAndFactorials2
+
+They are hopefully novel but also naive for sure, since the time complexity w.r.t eratosthenes is high. See below comparisons for timeit results. I am sharing it only because the methods seem to be different and not because they are any performant. Somebody may utilize this work for entirely different purpose.
+
+```python
+>>> import timeit
+>>> timeit.timeit(stmt='primeObj1 = primeAndFactorials();primeObj1.find_next_prime(cutOffLargestPrimesRequired=1000, byLength=False)',setup='from PrimeAndFactorials import primeAndFactorials', number=5)
+0.2627572159981355
+>>> timeit.timeit(stmt='primeObj2 = primeAndFactorials2();primeObj2.find_next_prime(cutOffLargestPrimesRequired=1000, byLength=False)',setup='from PrimeAndFactorials2 import primeAndFactorials2', number=5)
+0.011401384996133856
+>>> timeit.timeit(stmt='eratosthenes(maximum=1000)',setup='from eratosthenes import eratosthenes', number=5)
+0.0021134779963176697
+```
+As you can see PrimeAndFactorials is >100 times worse than eratosthenes while PrimeAndFactorials is >5 times worse than eratosthenes.
+
+
