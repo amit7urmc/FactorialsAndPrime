@@ -6,9 +6,6 @@ class primeAndFactorials2:
         self.largest_known_slots = [[2, 3]]
 
     def enumerate_prime(self, verbose=True):
-        """
-        If the new number is divided by at least two known primes such that the remainder is one less than the prime then it is a new prime.
-        """
         newCandidate = self.largest_number_probed_for_prime + 1
         prime_found = False
         num_hits = 0
