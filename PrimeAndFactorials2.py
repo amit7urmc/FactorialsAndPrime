@@ -7,7 +7,7 @@ class primeAndFactorials2:
 
     def enumerate_prime(self, verbose=True):
         newCandidate = self.largest_number_probed_for_prime + 1
-        prime_found = False
+        prime_found = True
         num_hits = 0
         num_skips = 0
         for eachSlot in self.largest_known_slots[0]:
@@ -15,15 +15,7 @@ class primeAndFactorials2:
                 self.largest_number_probed_for_prime = newCandidate
                 currentLength = len(str(self.largest_known_prime))
                 return currentLength
-        for eachSlot in self.largest_known_slots[0]: 
-            if newCandidate%eachSlot == (eachSlot-1):
-                num_hits += 1
-                if num_hits == 2:
-                    prime_found = True
-                    break
-            if newCandidate%eachSlot:
-                num_skips += 1
-        if prime_found or num_skips==len(self.largest_known_slots[0]):
+        if prime_found:
             self.largest_number_probed_for_prime = newCandidate
             self.largest_known_prime = newCandidate
             self.largest_known_slots[0].append(newCandidate)
